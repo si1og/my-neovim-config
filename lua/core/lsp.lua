@@ -13,6 +13,7 @@ vim.lsp.enable({
   "typos_lsp",
   "docker_compose_language_service",
   "hls",
+  "jdtls",
 })
 
 vim.diagnostic.config({
