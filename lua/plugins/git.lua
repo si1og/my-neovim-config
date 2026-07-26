@@ -123,7 +123,16 @@ return {
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
   },
   -- Git related plugins
-  "tpope/vim-fugitive",
+  {
+    "tpope/vim-fugitive",
+    keys = {
+      { "<leader>gs", "<cmd>Git<cr>", desc = "Git: show status" },
+      { "<leader>gw", "<cmd>Gwrite<cr>", desc = "Git: stage current file" },
+      { "<leader>gc", "<cmd>Git commit<cr>", desc = "Git: commit changes" },
+      { "<leader>gpl", "<cmd>Git pull<cr>", desc = "Git: pull changes" },
+      { "<leader>gpu", "<cmd>15 split | terminal git push<cr>", desc = "Git: push changes" },
+    },
+  },
   "tpope/vim-rhubarb",
   -- Undo tree
   {
