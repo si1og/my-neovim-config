@@ -128,6 +128,18 @@ Inside the EasyDotnet test runner:
 | --- | --- |
 | `<Space>uU` | Toggle Undotree |
 
+### Sessions
+
+Sessions are saved automatically on exit and kept separately for each working
+directory and Git branch.
+
+| Mapping | Action |
+| --- | --- |
+| `<Space>qs` | Restore the session for the current directory and Git branch |
+| `<Space>qS` | Select a saved session |
+| `<Space>ql` | Restore the last session |
+| `<Space>qd` | Stop persistence and do not save the current session |
+
 ### LaTeX
 
 These mappings are provided by VimTeX. Its local leader is `\`.
