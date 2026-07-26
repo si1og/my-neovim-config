@@ -128,6 +128,19 @@ Inside the EasyDotnet test runner:
 | --- | --- |
 | `<Space>uU` | Toggle Undotree |
 
+### LaTeX
+
+These mappings are provided by VimTeX. Its local leader is `\`.
+
+| Mapping | Action |
+| --- | --- |
+| `\ll` | Start or stop continuous compilation |
+| `\lk` | Stop compilation |
+| `\lv` | Open the generated PDF in Skim |
+| `\le` | Show VimTeX errors |
+| `\lt` | Open the table of contents |
+| `\li` | Show project information |
+
 ### Standard Neovim windows and tabs
 
 These are built-in Neovim mappings rather than custom mappings.

@@ -33,6 +33,8 @@ return {
         "yaml",
         "dockerfile",
         "haskell",
+        "latex",
+        "bibtex",
       },
       highlight = {
         enable = true,

@@ -14,6 +14,7 @@ vim.lsp.enable({
   "docker_compose_language_service",
   "hls",
   "jdtls",
+  "texlab",
 })
 
 vim.diagnostic.config({
