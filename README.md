@@ -97,31 +97,6 @@ Some LSP mappings are available only in buffers to which an LSP server is attach
 | `<Space>dr` | Toggle the DAP REPL |
 | `<Space>dj` / `<Space>dk` | Move down / up the stack |
 
-### .NET
-
-| Mapping | Action |
-| --- | --- |
-| `<Space>gg` | Run the project |
-| `<Space>tt` | Run tests |
-| `<Space>ap` | Add a NuGet package |
-| `<Space>pv` | Open the project view |
-| `<Space>sa` | Add a project to the solution |
-| `<Space>sr` | Remove a project from the solution |
-| `<Space>qt` | Close the project terminal buffer |
-
-Inside the EasyDotnet test runner:
-
-| Mapping | Action |
-| --- | --- |
-| `<Space>r` / `<Space>R` | Run the selected test / all tests |
-| `<Space>p` | Show the failed test stack trace |
-| `<Space>fe` | Filter failed tests |
-| `o` / `E` | Expand an item / node |
-| `-` / `W` | Expand / collapse all |
-| `<C-r>` | Refresh the test runner |
-| `q` | Close the test runner |
-| `T` | Open the debugger variable viewer |
-
 ### Undo history
 
 | Mapping | Action |
