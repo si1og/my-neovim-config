@@ -32,6 +32,9 @@ vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
 vim.keymap.set("n", "+", "<C-a>")
 vim.keymap.set("n", "-", "<C-x>")
 
+-- Delete without overwriting the current register
+vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
+
 -- Close current buffer
 vim.keymap.set("n", "<leader>cb", function()
   vim.cmd("bdelete! ")

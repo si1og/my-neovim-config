@@ -18,6 +18,7 @@ Originally based on [topoff0/nvim](https://github.com/topoff0/nvim) by
 | `<Space>ee` | Normal | Toggle Neo-tree |
 | `<Space>rr` | Normal | Reveal the current file in Neo-tree |
 | `<Space>cb` | Normal | Close the current buffer |
+| `<Space>x{motion}` | Normal/Visual | Delete without overwriting the current register |
 | `<Esc>` | Normal | Clear search highlighting |
 | `+` / `-` | Normal | Increment / decrement the number under the cursor |
 | `J` / `K` | Visual | Move the selected lines down / up |
