@@ -39,3 +39,7 @@ vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yankin
 vim.keymap.set("n", "<leader>cb", function()
   vim.cmd("bdelete! ")
 end, { desc = "Close current buffer" })
+
+-- Tabs
+vim.keymap.set({"v", "n"}, "<Tab>", ">gv", { silent = true })
+vim.keymap.set({"v", "n"}, "<S-Tab>", "<gv", { silent = true })
