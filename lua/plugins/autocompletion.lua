@@ -25,9 +25,6 @@ return {
       -- Load VSCode-style snippets
       require("luasnip.loaders.from_vscode").lazy_load()
 
-      -- Register Easy-dotnet source
-      cmp.register_source("easy-dotnet", require("easy-dotnet").package_completion_source)
-
       local confirm_completion = cmp.mapping.confirm({ select = true })
 
       cmp.setup({
@@ -40,7 +37,6 @@ return {
               vim_item.kind = vim_item.kind:gsub("^%s*[%w%p]*%s*", "")
               vim_item.menu = ({
                 nvim_lsp = "[LSP]",
-                easy_dotnet = "[Dotnet]",
                 luasnip = "[Snip]",
                 buffer = "[Buf]",
                 path = "[Path]",
@@ -78,7 +74,6 @@ return {
         }),
 
         sources = cmp.config.sources({
-          { name = "easy-dotnet" },
           { name = "nvim_lsp_signature_help", priority = 50 },
           { name = "luasnip",                 priority = 40 },
           { name = "nvim_lsp",                priority = 30 },

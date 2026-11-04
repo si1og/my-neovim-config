@@ -154,9 +154,6 @@ return {
     hl("@tag.attribute", { fg = c.yellow })
     hl("@tag.delimiter", { fg = c.soft })
 
-    hl("@type.cs", { fg = c.green })
-    hl("@constructor.cs", { fg = c.green })
-
     local semantic = {
       c = true,
       cpp = true,
@@ -184,20 +181,5 @@ return {
       hl("@lsp.typemod.property.readonly." .. lang, { fg = c.pink })
     end
 
-    hl("@lsp.type.class.cs", { fg = c.green })
-    hl("@lsp.type.recordClass.cs", { fg = c.green })
-    hl("@lsp.type.struct.cs", { fg = c.green })
-    hl("@lsp.type.type.cs", { fg = c.green })
-    hl("@lsp.type.interface.cs", { fg = c.aqua })
-    hl("@lsp.type.enum.cs", { fg = c.aqua })
-    hl("@lsp.type.method.cs", { fg = c.yellow })
-    hl("@lsp.type.extensionMethod.cs", { fg = c.purple })
-    hl("@lsp.type.property.cs", { fg = c.cyan })
-    hl("@lsp.type.field.cs", { fg = c.cyan })
-    hl("@lsp.type.parameter.cs", { fg = c.blue })
-    hl("@lsp.type.namespace.cs", { fg = c.soft })
-    hl("@lsp.type.variable.cs", { fg = c.blue })
-    hl("@lsp.typemod.variable.readonly.cs", { fg = c.pink })
-    hl("@lsp.typemod.property.readonly.cs", { fg = c.pink })
   end,
 }

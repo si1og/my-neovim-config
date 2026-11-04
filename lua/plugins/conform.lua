@@ -6,7 +6,6 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         javascript = { "prettierd", "prettier", stop_after_first = true },
-        csharp = { "csharpier" },
         css = { "prettier" },
         c = { "clang-format" },
       },
