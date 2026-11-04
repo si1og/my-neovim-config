@@ -23,6 +23,13 @@ return {
       },
       colors = {
         palette = {
+          sumiInk0 = "#0f0d0a",
+          sumiInk1 = "#15110e",
+          sumiInk2 = "#1a1612",
+          sumiInk3 = "#221e1a",
+          sumiInk4 = "#2a241f",
+          sumiInk5 = "#332b25",
+          sumiInk6 = "#3d352e",
           autumnRed = "#ff705c",
           samuraiRed = "#ff705c",
           waveRed = "#ff795f",
@@ -78,10 +85,10 @@ return {
       vim.api.nvim_set_hl(0, group, opts)
     end
 
-    hl("Normal", { bg = "NONE" })
-    hl("NormalNC", { bg = "NONE" })
-    hl("EndOfBuffer", { bg = "NONE" })
-    hl("SignColumn", { bg = "NONE" })
+    hl("Normal", { fg = c.fg, bg = c.bg })
+    hl("NormalNC", { fg = c.fg, bg = c.bg })
+    hl("EndOfBuffer", { fg = c.bg, bg = c.bg })
+    hl("SignColumn", { bg = c.bg })
     hl("Cursor", { fg = c.bg, bg = c.orange })
     hl("CursorLine", { bg = c.panel })
     hl("CursorLineNr", { fg = c.soft, bold = true })
@@ -91,7 +98,7 @@ return {
     hl("IncSearch", { fg = c.bg, bg = c.yellow })
     hl("NormalFloat", { fg = c.fg, bg = c.surface })
     hl("FloatBorder", { fg = c.border, bg = c.surface })
-    hl("WinSeparator", { fg = c.border, bg = "NONE" })
+    hl("WinSeparator", { fg = c.border, bg = c.bg })
 
     hl("Directory", { fg = c.blue })
     hl("NeoTreeDirectoryIcon", { fg = c.blue })
