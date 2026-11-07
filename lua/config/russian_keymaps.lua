@@ -47,24 +47,21 @@ local function copy_mappings(mode, bufnr)
 
   for _, mapping in ipairs(mappings) do
     local russian_lhs = translate(mapping.lhs)
-    local rhs = mapping.callback or mapping.rhs
 
-    if russian_lhs and not existing[russian_lhs] and rhs and rhs ~= "" then
+    if russian_lhs and not existing[russian_lhs] then
       local opts = {
-        remap = mapping.noremap == 0,
+        -- Dispatch through the original mapping. This is important for
+        -- lazy.nvim key handlers, whose callback is tied to the Latin LHS.
+        remap = true,
         silent = mapping.silent == 1,
-        expr = mapping.expr == 1,
         nowait = mapping.nowait == 1,
         desc = ((mapping.desc and mapping.desc ~= "") and mapping.desc or "Leader mapping") .. " [RU]",
       }
       if bufnr then
         opts.buffer = bufnr
       end
-      if opts.expr then
-        opts.replace_keycodes = mapping.replace_keycodes == 1
-      end
 
-      pcall(vim.keymap.set, mode, russian_lhs, rhs, opts)
+      pcall(vim.keymap.set, mode, russian_lhs, mapping.lhs, opts)
       existing[russian_lhs] = true
     end
   end
