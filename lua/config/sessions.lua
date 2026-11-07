@@ -86,6 +86,7 @@ function M.open()
   local pickers = require("telescope.pickers")
   local finders = require("telescope.finders")
   local conf = require("telescope.config").values
+  local themes = require("telescope.themes")
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")
 
@@ -176,9 +177,17 @@ function M.open()
     switch_session(entry.value)
   end
 
-  picker = pickers.new({}, {
-    prompt_title = "Sessions  <Tab>/<CR> open  •  r/к rename  •  d/в delete",
+  local picker_opts = themes.get_dropdown({
     initial_mode = "normal",
+    previewer = false,
+    layout_config = {
+      width = 0.55,
+      height = 0.45,
+    },
+  })
+
+  picker = pickers.new(picker_opts, {
+    prompt_title = "Sessions  <Tab>/<CR> open  •  r/к rename  •  d/в delete",
     finder = finder(),
     sorter = conf.generic_sorter({}),
     attach_mappings = function(prompt_bufnr, map)
