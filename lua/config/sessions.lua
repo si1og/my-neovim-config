@@ -81,6 +81,10 @@ function M.open()
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")
 
+  local function translated(key)
+    return vim.fn.NvimConfigTranslateKeys(key)
+  end
+
   local picker
   local items, names = session_items()
 
@@ -132,7 +136,7 @@ function M.open()
   end
 
   picker = pickers.new({}, {
-    prompt_title = "Sessions  <Tab>/<CR> open  •  <C-r>/r rename",
+    prompt_title = "Sessions  <Tab>/<CR> open  •  <C-r>/r/к rename",
     finder = finder(),
     sorter = conf.generic_sorter({}),
     attach_mappings = function(prompt_bufnr, map)
@@ -144,6 +148,9 @@ function M.open()
       map("n", "<Tab>", open_selected)
       map("i", "<C-r>", rename_session)
       map("n", "r", rename_session)
+      map("n", translated("r"), rename_session)
+      map("n", translated("j"), actions.move_selection_next)
+      map("n", translated("k"), actions.move_selection_previous)
       return true
     end,
   })

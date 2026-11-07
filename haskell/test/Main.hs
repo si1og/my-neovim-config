@@ -2,7 +2,7 @@ module Main (main) where
 
 import Control.Monad (unless)
 import InputSource (inputSourceLabel)
-import KeyboardLayout (translateLeader)
+import KeyboardLayout (translateKeys, translateLeader)
 import Session (SessionRef (..), decodeSession)
 import System.Exit (exitFailure)
 
@@ -11,6 +11,7 @@ main = do
   let checks =
         [ (translateLeader "<Space>ee" == Just " уу", "lowercase leader translation"),
           (translateLeader " qQ" == Just " йЙ", "uppercase leader translation"),
+          (translateKeys "rjk" == "кол", "Telescope key translation"),
           (translateLeader "<Space>e<CR>" == Just " у<CR>", "special key is preserved"),
           (translateLeader "gd" == Nothing, "non-leader mapping is ignored"),
           (decodeSession "%Users%ilyasemenov%project.vim" == SessionRef "/Users/ilyasemenov/project" Nothing, "session directory"),

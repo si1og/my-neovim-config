@@ -1,4 +1,8 @@
-module KeyboardLayout (translateLeader) where
+module KeyboardLayout
+  ( translateKeys,
+    translateLeader,
+  )
+where
 
 import Data.List (stripPrefix)
 

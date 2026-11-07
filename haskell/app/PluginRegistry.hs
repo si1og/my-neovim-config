@@ -4,12 +4,15 @@ module PluginRegistry (pluginRegistry) where
 
 import Data.Maybe (fromMaybe)
 import InputSource (inputSourceLabel)
-import KeyboardLayout (translateLeader)
+import KeyboardLayout (translateKeys, translateLeader)
 import Neovim
 import Session (SessionRef (..), decodeSession)
 
 translateLeaderRpc :: String -> Neovim () String
 translateLeaderRpc = pure . fromMaybe "" . translateLeader
+
+translateKeysRpc :: String -> Neovim () String
+translateKeysRpc = pure . translateKeys
 
 decodeSessionRpc :: String -> Neovim () [String]
 decodeSessionRpc path =
@@ -28,6 +31,7 @@ configHelpers =
       { environment = (),
         exports =
           [ $(function "NvimConfigTranslateLeader" 'translateLeaderRpc) Sync,
+            $(function "NvimConfigTranslateKeys" 'translateKeysRpc) Sync,
             $(function "NvimConfigDecodeSession" 'decodeSessionRpc) Sync,
             $(function "NvimConfigInputSourceLabel" 'inputSourceLabelRpc) Sync
           ]
