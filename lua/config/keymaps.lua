@@ -11,6 +11,7 @@ vim.opt.langmap = table.concat({
   "ЯЧСМИТЬ;ZXCVBNM",
 }, ",")
 
+vim.keymap.set("n", "<leader>q", "<cmd>confirm qall<CR>", { desc = "Quit Neovim" })
 vim.keymap.set("n", "<leader>qq", "<cmd>confirm qall<CR>", { desc = "Quit Neovim" })
 vim.keymap.set("n", "<leader>qQ", "<cmd>qall!<CR>", { desc = "Force quit Neovim" })
 
