@@ -35,16 +35,15 @@ vim.keymap.set("n", "<leader>Q", function()
   quit_neovim(false)
 end, { desc = "Quit without saving session", nowait = true })
 
-vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>E", vim.cmd.Ex, { desc = "Open netrw" })
 vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle<CR>", { desc = "Explorer" })
 vim.keymap.set("n", "<leader>er", "<cmd>Neotree reveal<CR>", { desc = "Explorer: reveal current file" })
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Explorer" })
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
 
-vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+vim.keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, { desc = "LSP: code action" })
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 vim.keymap.set("n", "<leader>j", function()
   vim.diagnostic.jump({ count = 1, float = true })
@@ -83,9 +82,9 @@ vim.keymap.set("n", "<leader>c", "<cmd>confirm bdelete<CR>", {
   desc = "Close current buffer",
   nowait = true,
 })
-vim.keymap.set("n", "<leader>cb", function()
+vim.keymap.set("n", "<leader>C", function()
   vim.cmd("bdelete! ")
-end, { desc = "Close current buffer" })
+end, { desc = "Force close current buffer", nowait = true })
 
 -- Tabs
 vim.keymap.set({"v", "n"}, "<Tab>", ">gv", { silent = true })
@@ -120,4 +119,7 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<leader>o", "o<Esc>")
 
 -- Zed-compatible terminal
-vim.keymap.set("n", "<leader>t", "<cmd>botright 15split | terminal<CR>", { desc = "Open terminal" })
+vim.keymap.set("n", "<leader>t", "<cmd>botright 15split | terminal<CR>", {
+  desc = "Open terminal",
+  nowait = true,
+})

@@ -6,6 +6,7 @@ return {
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio",
     },
+    keys = { "<leader>ss", "<leader>Dx", "<leader>Dc", "<F10>", "<F11>", "<F12>", "<leader>b", "<leader>DC", "<leader>Dr", "<leader>Dj", "<leader>Dk" },
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
@@ -62,9 +63,9 @@ return {
 
       vim.keymap.set("n", "<leader>ss", dap.terminate, { desc = "Terminate" })
 
-      vim.keymap.set("n", "<leader>Dcb", dap.clear_breakpoints, { desc = "Clear breakpoints" })
+      vim.keymap.set("n", "<leader>Dx", dap.clear_breakpoints, { desc = "Clear breakpoints" })
 
-      vim.keymap.set("n", "<leader>Dc", dap.continue, { desc = "Start/continue debugging" })
+      vim.keymap.set("n", "<leader>Dc", dap.continue, { desc = "Start/continue debugging", nowait = true })
       vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Step over" })
       vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Step into" })
       vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Step out" })

@@ -1,7 +1,7 @@
-local conf = require("telescope.config").values
-local themes = require("telescope.themes")
-
 local function toggle_telescope(harpoon_files)
+  require("lazy").load({ plugins = { "telescope.nvim" } })
+  local conf = require("telescope.config").values
+  local themes = require("telescope.themes")
   local file_paths = {}
   for _, item in ipairs(harpoon_files.items) do
     table.insert(file_paths, item.value)
@@ -27,6 +27,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
+  keys = { "<leader>a", "<C-e>", "<leader>fl", "<C-p>", "<C-n>" },
   config = function()
     local harpoon = require("harpoon")
     vim.keymap.set("n", "<leader>a", function()

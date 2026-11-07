@@ -1,5 +1,6 @@
 return {
   "stevearc/conform.nvim",
+  keys = { { "<leader>mp", mode = { "n", "v" } } },
 
   config = function()
     require("conform").setup({

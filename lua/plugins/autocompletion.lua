@@ -1,10 +1,11 @@
 return {
   -- LSP source
-  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-nvim-lsp", lazy = true },
 
   -- Snippets
   {
     "L3MON4D3/LuaSnip",
+    lazy = true,
     dependencies = {
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
@@ -12,11 +13,17 @@ return {
   },
 
   -- Icons for completion
-  { "onsails/lspkind-nvim" },
+  { "onsails/lspkind-nvim", lazy = true },
 
   -- Autocompletion engine
   {
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "L3MON4D3/LuaSnip",
+      "onsails/lspkind-nvim",
+    },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")

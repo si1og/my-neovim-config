@@ -1,5 +1,6 @@
 return {
   "3rd/image.nvim",
+  ft = { "asciidoc", "adoc", "norg", "rst", "typst" },
   config = function()
     require("image").setup({
       backend = "kitty",    -- or "ueberzug" or "sixel"

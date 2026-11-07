@@ -2,9 +2,38 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     tag = "v0.2.0",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "Telescope",
+    keys = { "<leader>ff", "<leader>fg", "<leader>/", "<leader>fb", "<leader>fh", "<leader>p", "<leader>ft" },
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim" },
     config = function()
+      local telescope = require("telescope")
       local builtin = require("telescope.builtin")
+      telescope.setup({
+        defaults = {
+          layout_config = {
+            horizontal = {
+              preview_cutoff = 0,
+            },
+          },
+        },
+        pickers = {
+          buffers = {
+            mappings = {
+              n = {
+                d = require("telescope.actions").delete_buffer,
+                ["в"] = require("telescope.actions").delete_buffer,
+              },
+            },
+          },
+        },
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown({}),
+          },
+        },
+      })
+      telescope.load_extension("ui-select")
+
       vim.keymap.set("n", "<leader>ff", function()
         if vim.fn.exists("*NvimConfigBinaryFilePatterns") ~= 1 then
           vim.notify("Haskell provider is still starting", vim.log.levels.INFO)
@@ -30,39 +59,13 @@ return {
       end, { desc = "Search open buffers" })
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
       vim.keymap.set("n", "<leader>p", builtin.commands, { desc = "Command palette" })
-      vim.keymap.set("n", "<leader>td", function()
+      vim.keymap.set("n", "<leader>ft", function()
         vim.cmd("TodoTelescope")
       end, { desc = "Open todo telescope" })
     end,
   },
   {
     "nvim-telescope/telescope-ui-select.nvim",
-    config = function()
-      require("telescope").setup({
-        defaults = {
-          layout_config = {
-            horizontal = {
-              preview_cutoff = 0,
-            },
-          },
-        },
-        pickers = {
-          buffers = {
-            mappings = {
-              n = {
-                d = require("telescope.actions").delete_buffer,
-                ["в"] = require("telescope.actions").delete_buffer,
-              },
-            },
-          },
-        },
-        extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown({}),
-          },
-        },
-      })
-      require("telescope").load_extension("ui-select")
-    end,
+    lazy = true,
   },
 }

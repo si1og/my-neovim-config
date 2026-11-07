@@ -128,6 +128,7 @@ return {
   -- Git related plugins
   {
     "tpope/vim-fugitive",
+    dependencies = { "tpope/vim-rhubarb" },
     keys = {
       { "<leader>g", "<cmd>Git commit<cr>", desc = "Git: commit changes" },
       { "<leader>Gs", "<cmd>Git<cr>", desc = "Git: show status" },
@@ -137,7 +138,7 @@ return {
       { "<leader>Gpu", "<cmd>15 split | terminal git push<cr>", desc = "Git: push changes" },
     },
   },
-  "tpope/vim-rhubarb",
+  { "tpope/vim-rhubarb", lazy = true },
   -- Undo tree
   {
     "mbbill/undotree",
