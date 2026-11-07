@@ -41,7 +41,7 @@ vim.keymap.set("n", "g#", "g#zz", { desc = "Search Partial Back (centered)" })
 vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { desc = "Clear Highlight", silent = true })
 
 -- Format files
-vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "LSP: format buffer" })
 
 -- Increment/decrement
 vim.keymap.set("n", "+", "<C-a>")

@@ -58,58 +58,58 @@ return {
       })
     end,
     keys = {
-      -- All under <leader>g for Git
+      -- Advanced Git actions live under <leader>G; <leader>g is quick commit.
       {
-        "<leader>gh",
+        "<leader>Gh",
         function()
           require("gitsigns").preview_hunk()
         end,
         desc = "Preview Hunk",
       },
       {
-        "<leader>gH",
+        "<leader>GH",
         function()
           require("gitsigns").preview_hunk_inline()
         end,
         desc = "Preview Hunk Inline",
       },
       {
-        "<leader>ga",
+        "<leader>Ga",
         function()
           require("gitsigns").stage_hunk()
         end,
         desc = "Stage Hunk",
       },
       {
-        "<leader>gu",
+        "<leader>Gu",
         function()
           require("gitsigns").undo_stage_hunk()
         end,
         desc = "Undo Stage",
       },
       {
-        "<leader>gr",
+        "<leader>Gr",
         function()
           require("gitsigns").reset_hunk()
         end,
         desc = "Reset Hunk",
       },
       {
-        "<leader>gR",
+        "<leader>GR",
         function()
           require("gitsigns").reset_buffer()
         end,
         desc = "Reset Buffer",
       },
       {
-        "<leader>gx",
+        "<leader>Gx",
         function()
           require("gitsigns").blame_line()
         end,
         desc = "Blame Line",
       },
       {
-        "<leader>gD",
+        "<leader>GD",
         function()
           vim.cmd("Gitsigns diffthis HEAD")
         end,
@@ -121,16 +121,20 @@ return {
     "sindrets/diffview.nvim",
     event = "VeryLazy",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+    keys = {
+      { "<leader>d", "<cmd>DiffviewOpen<cr>", desc = "Git: open diff" },
+    },
   },
   -- Git related plugins
   {
     "tpope/vim-fugitive",
     keys = {
-      { "<leader>gs", "<cmd>Git<cr>", desc = "Git: show status" },
-      { "<leader>gw", "<cmd>Gwrite<cr>", desc = "Git: stage current file" },
-      { "<leader>gc", "<cmd>Git commit<cr>", desc = "Git: commit changes" },
-      { "<leader>gpl", "<cmd>Git pull<cr>", desc = "Git: pull changes" },
-      { "<leader>gpu", "<cmd>15 split | terminal git push<cr>", desc = "Git: push changes" },
+      { "<leader>g", "<cmd>Git commit<cr>", desc = "Git: commit changes" },
+      { "<leader>Gs", "<cmd>Git<cr>", desc = "Git: show status" },
+      { "<leader>Gw", "<cmd>Gwrite<cr>", desc = "Git: stage current file" },
+      { "<leader>Gc", "<cmd>Git commit<cr>", desc = "Git: commit changes" },
+      { "<leader>Gpl", "<cmd>Git pull<cr>", desc = "Git: pull changes" },
+      { "<leader>Gpu", "<cmd>15 split | terminal git push<cr>", desc = "Git: push changes" },
     },
   },
   "tpope/vim-rhubarb",

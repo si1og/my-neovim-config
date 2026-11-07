@@ -62,17 +62,17 @@ return {
 
       vim.keymap.set("n", "<leader>ss", dap.terminate, { desc = "Terminate" })
 
-      vim.keymap.set("n", "<leader>dcb", dap.clear_breakpoints, { desc = "Clear breakpoints" })
+      vim.keymap.set("n", "<leader>Dcb", dap.clear_breakpoints, { desc = "Clear breakpoints" })
 
-      vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Start/continue debugging" })
+      vim.keymap.set("n", "<leader>Dc", dap.continue, { desc = "Start/continue debugging" })
       vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Step over" })
       vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Step into" })
       vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Step out" })
       vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
-      vim.keymap.set("n", "<leader>dC", dap.run_to_cursor, { desc = "Run to cursor" })
-      vim.keymap.set("n", "<leader>dr", dap.repl.toggle, { desc = "Toggle DAP REPL" })
-      vim.keymap.set("n", "<leader>dj", dap.down, { desc = "Go down stack frame" })
-      vim.keymap.set("n", "<leader>dk", dap.up, { desc = "Go up stack frame" })
+      vim.keymap.set("n", "<leader>DC", dap.run_to_cursor, { desc = "Run to cursor" })
+      vim.keymap.set("n", "<leader>Dr", dap.repl.toggle, { desc = "Toggle DAP REPL" })
+      vim.keymap.set("n", "<leader>Dj", dap.down, { desc = "Go down stack frame" })
+      vim.keymap.set("n", "<leader>Dk", dap.up, { desc = "Go up stack frame" })
     end
   }
 }

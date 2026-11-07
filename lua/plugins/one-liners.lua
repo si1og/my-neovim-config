@@ -2,6 +2,9 @@ return {
   { -- This generates docblocks
     "kkoomen/vim-doge",
     build = ":call doge#install()",
+    init = function()
+      vim.g.doge_mapping = "<leader>Dd"
+    end,
   },
   { -- Git plugin
     "tpope/vim-fugitive",
