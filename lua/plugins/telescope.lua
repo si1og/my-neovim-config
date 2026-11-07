@@ -36,6 +36,16 @@ return {
             },
           },
         },
+        pickers = {
+          buffers = {
+            mappings = {
+              n = {
+                d = require("telescope.actions").delete_buffer,
+                ["в"] = require("telescope.actions").delete_buffer,
+              },
+            },
+          },
+        },
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown({}),

@@ -110,6 +110,10 @@ return {
             noremap = true,
             nowait = true,
           },
+          mappings = {
+            ["d"] = "delete",
+            ["в"] = "delete",
+          },
         },
 
         filesystem = {

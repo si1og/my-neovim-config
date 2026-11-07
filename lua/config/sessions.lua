@@ -64,11 +64,16 @@ local function switch_session(item)
   end
 
   local persistence = require("persistence")
-  persistence.save()
+  if persistence.active() then
+    persistence.save()
+  end
   persistence.fire("LoadPre")
   vim.fn.chdir(item.dir)
   vim.cmd("silent! source " .. vim.fn.fnameescape(item.path))
   persistence.fire("LoadPost")
+  if not persistence.active() then
+    persistence.start()
+  end
 end
 
 function M.open()
@@ -129,6 +134,36 @@ function M.open()
     end)
   end
 
+  local function delete_session()
+    local entry = action_state.get_selected_entry()
+    if not entry then
+      return
+    end
+
+    local item = entry.value
+    local label = item.name or item.relative_dir
+    local choice = vim.fn.confirm('Delete session "' .. label .. '"?', "&Delete\n&Cancel", 2)
+    if choice ~= 1 then
+      return
+    end
+
+    if vim.fn.delete(item.path) ~= 0 then
+      vim.notify("Failed to delete session: " .. item.path, vim.log.levels.ERROR)
+      return
+    end
+
+    if item.path == persistence.current() then
+      persistence.stop()
+    end
+
+    names[item.key] = nil
+    write_names(names)
+    items = vim.tbl_filter(function(candidate)
+      return candidate.path ~= item.path
+    end, items)
+    picker:refresh(finder(), { reset_prompt = false })
+  end
+
   local function open_selected(prompt_bufnr)
     local entry = action_state.get_selected_entry()
     actions.close(prompt_bufnr)
@@ -136,7 +171,7 @@ function M.open()
   end
 
   picker = pickers.new({}, {
-    prompt_title = "Sessions  <Tab>/<CR> open  •  <C-r>/r/к rename",
+    prompt_title = "Sessions  <Tab>/<CR> open  •  r/к rename  •  d/в delete",
     initial_mode = "normal",
     finder = finder(),
     sorter = conf.generic_sorter({}),
@@ -150,6 +185,8 @@ function M.open()
       map("i", "<C-r>", rename_session)
       map("n", "r", rename_session)
       map("n", translated("r"), rename_session)
+      map("n", "d", delete_session)
+      map("n", translated("d"), delete_session)
       map("n", translated("j"), actions.move_selection_next)
       map("n", translated("k"), actions.move_selection_previous)
       return true
