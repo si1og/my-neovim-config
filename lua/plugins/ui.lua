@@ -5,7 +5,8 @@ return {
   config = function()
     local bufferline = require("bufferline")
     local bg = "#1a1612"
-    local surface = "#28211c"
+    local inactive = "#231e1a"
+    local active = "#2b2521"
     local border = "#3d352e"
     local text = "#d4c5b9"
     local muted = "#8a7d72"
@@ -34,19 +35,19 @@ return {
       },
       highlights = {
         fill = { bg = bg },
-        background = { fg = muted, bg = surface },
-        buffer_visible = { fg = text, bg = surface },
-        buffer_selected = { fg = accent, bg = bg, bold = true, italic = false },
-        separator = { fg = bg, bg = surface },
-        separator_visible = { fg = bg, bg = surface },
-        separator_selected = { fg = bg, bg = bg },
-        indicator_selected = { fg = accent, bg = bg },
-        close_button = { fg = muted, bg = surface },
-        close_button_visible = { fg = text, bg = surface },
-        close_button_selected = { fg = accent, bg = bg },
-        modified = { fg = accent, bg = surface },
-        modified_visible = { fg = accent, bg = surface },
-        modified_selected = { fg = accent, bg = bg },
+        background = { fg = muted, bg = inactive },
+        buffer_visible = { fg = text, bg = inactive },
+        buffer_selected = { fg = accent, bg = active, bold = true, italic = false },
+        separator = { fg = bg, bg = inactive },
+        separator_visible = { fg = bg, bg = inactive },
+        separator_selected = { fg = bg, bg = active },
+        indicator_selected = { fg = accent, bg = active },
+        close_button = { fg = muted, bg = inactive },
+        close_button_visible = { fg = text, bg = inactive },
+        close_button_selected = { fg = accent, bg = active },
+        modified = { fg = accent, bg = inactive },
+        modified_visible = { fg = accent, bg = inactive },
+        modified_selected = { fg = accent, bg = active },
         offset_separator = { fg = border, bg = bg },
       },
     })
