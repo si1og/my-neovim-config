@@ -21,10 +21,8 @@ return {
         once = true,
         callback = function()
           if vim.fn.argc() == 0 then
-            vim.schedule(function()
-              require("persistence").load()
-              require("config.session_persistence").remove_directory_buffers()
-            end)
+            require("persistence").load()
+            require("config.session_persistence").remove_directory_buffers()
           end
         end,
       })
