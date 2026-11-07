@@ -79,7 +79,10 @@ vim.keymap.set("n", "-", "<C-x>")
 vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
 
 -- Close current buffer
-vim.keymap.set("n", "<leader>c", "<cmd>confirm bdelete<CR>", { desc = "Close current buffer" })
+vim.keymap.set("n", "<leader>c", "<cmd>confirm bdelete<CR>", {
+  desc = "Close current buffer",
+  nowait = true,
+})
 vim.keymap.set("n", "<leader>cb", function()
   vim.cmd("bdelete! ")
 end, { desc = "Close current buffer" })
