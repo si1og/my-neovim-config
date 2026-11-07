@@ -56,7 +56,15 @@ return {
           'lsp_status',
           {
             input_source.status,
-            color = { fg = colors.orange, gui = "bold" },
+            color = { fg = colors.muted },
+            separator = { left = "", right = "" },
+          },
+          {
+            function()
+              return os.date("%H:%M")
+            end,
+            color = { fg = colors.muted },
+            separator = { left = "", right = "" },
           },
         },
         lualine_y = { 'progress' },
