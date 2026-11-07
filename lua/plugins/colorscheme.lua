@@ -61,8 +61,8 @@ return {
     -- Rust & Brown palette, shared with Zed and tmux.
     local c = {
       bg = "#1a1612",
-      surface = "#221e1a",
-      panel = "#2a241f",
+      surface = "#28211c",
+      panel = "#302822",
       select = "#3d352e",
       border = "#3d352e",
       fg = "#fffbf5",
@@ -99,6 +99,20 @@ return {
     hl("NormalFloat", { fg = c.fg, bg = c.surface })
     hl("FloatBorder", { fg = c.border, bg = c.surface })
     hl("WinSeparator", { fg = c.border, bg = c.bg })
+
+    -- File explorer shares the editor background.
+    hl("NeoTreeNormal", { fg = c.fg, bg = c.bg })
+    hl("NeoTreeNormalNC", { fg = c.soft, bg = c.bg })
+    hl("NeoTreeEndOfBuffer", { fg = c.bg, bg = c.bg })
+    hl("NeoTreeSignColumn", { bg = c.bg })
+
+    -- Other auxiliary panels stay slightly raised.
+    hl("TelescopeNormal", { fg = c.fg, bg = c.surface })
+    hl("TelescopeBorder", { fg = c.border, bg = c.surface })
+    hl("TelescopePromptNormal", { fg = c.fg, bg = c.panel })
+    hl("TelescopePromptBorder", { fg = c.border, bg = c.panel })
+    hl("TroubleNormal", { fg = c.fg, bg = c.surface })
+    hl("TroubleNormalNC", { fg = c.soft, bg = c.surface })
 
     hl("Directory", { fg = c.blue })
     hl("NeoTreeDirectoryIcon", { fg = c.blue })

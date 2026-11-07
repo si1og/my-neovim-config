@@ -143,3 +143,16 @@ These are built-in Neovim mappings rather than custom mappings.
 | `<C-w>+/-` | Increase / decrease window height |
 | `<C-w>>/<` | Increase / decrease window width |
 | `gt` / `gT` | Next / previous tab |
+
+# macOS input-source indicator
+
+The lualine keyboard-layout indicator uses a native event watcher instead of
+polling. Build it once after cloning the configuration:
+
+```sh
+sh scripts/install-input-source-watch.sh
+```
+
+The watcher listens to macOS
+`kTISNotifySelectedKeyboardInputSourceChanged` notifications and exits with
+Neovim.
