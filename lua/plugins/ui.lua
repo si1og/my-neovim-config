@@ -16,10 +16,8 @@ return {
         offsets = {
           {
             filetype = "neo-tree",
-            text = "File Explorer",
-            text_align = "center",
-            highlight = "Directory",
-            separator = true,
+            text = "",
+            separator = false,
           },
         },
         modified_icon = "●",
