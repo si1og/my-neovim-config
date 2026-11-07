@@ -19,8 +19,15 @@ return {
       vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
       vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Search project" })
       vim.keymap.set("n", "<leader>fb", function()
-        builtin.buffers({ previewer = false })
-      end, { desc = "Search open tabs" })
+        builtin.buffers(require("telescope.themes").get_dropdown({
+          initial_mode = "normal",
+          previewer = false,
+          layout_config = {
+            width = 0.55,
+            height = 0.45,
+          },
+        }))
+      end, { desc = "Search open buffers" })
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
       vim.keymap.set("n", "<leader>p", builtin.commands, { desc = "Command palette" })
       vim.keymap.set("n", "<leader>td", function()

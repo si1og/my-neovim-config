@@ -1,9 +1,9 @@
 return {
   {
     "folke/persistence.nvim",
-    event = "BufReadPre",
+    lazy = false,
     opts = {
-      need = 0,
+      need = 1,
       branch = false,
     },
     init = function()
@@ -15,6 +15,19 @@ return {
         "tabpages",
         "winsize",
       }
+
+      vim.api.nvim_create_autocmd("VimEnter", {
+        group = vim.api.nvim_create_augroup("restore-project-session", { clear = true }),
+        once = true,
+        callback = function()
+          if vim.fn.argc() == 0 then
+            vim.schedule(function()
+              require("persistence").load()
+              require("config.session_persistence").remove_directory_buffers()
+            end)
+          end
+        end,
+      })
     end,
     keys = {
       {

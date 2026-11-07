@@ -64,12 +64,15 @@ local function switch_session(item)
   end
 
   local persistence = require("persistence")
+  local session_persistence = require("config.session_persistence")
   if persistence.active() then
-    persistence.save()
+    session_persistence.save()
   end
   persistence.fire("LoadPre")
+  session_persistence.close_all_buffers()
   vim.fn.chdir(item.dir)
   vim.cmd("silent! source " .. vim.fn.fnameescape(item.path))
+  session_persistence.remove_directory_buffers()
   persistence.fire("LoadPost")
   if not persistence.active() then
     persistence.start()
@@ -78,7 +81,7 @@ end
 
 function M.open()
   local persistence = require("persistence")
-  persistence.save()
+  require("config.session_persistence").save()
 
   local pickers = require("telescope.pickers")
   local finders = require("telescope.finders")
@@ -166,8 +169,11 @@ function M.open()
 
   local function open_selected(prompt_bufnr)
     local entry = action_state.get_selected_entry()
+    if not entry or not require("config.session_persistence").confirm_discard_modified() then
+      return
+    end
     actions.close(prompt_bufnr)
-    switch_session(entry and entry.value)
+    switch_session(entry.value)
   end
 
   picker = pickers.new({}, {

@@ -1,5 +1,6 @@
 local M = {
   label = "--",
+  source = nil,
   job = nil,
 }
 
@@ -34,17 +35,16 @@ function M.setup()
       for _, source in ipairs(data or {}) do
         source = vim.trim(source)
         if source ~= "" then
-          local label = label_for(source)
-          if label then
-            M.label = label
-            refresh_statusline()
-          end
+          M.source = source
+          M.label = nil
+          refresh_statusline()
         end
       end
     end,
     on_exit = function()
       M.job = nil
       M.label = "--"
+      M.source = nil
       refresh_statusline()
     end,
   })
@@ -61,7 +61,10 @@ function M.setup()
 end
 
 function M.status()
-  return M.label
+  if not M.label and M.source then
+    M.label = label_for(M.source)
+  end
+  return M.label or "--"
 end
 
 return M

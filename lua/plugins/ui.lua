@@ -13,7 +13,7 @@ return {
 
     bufferline.setup({
       options = {
-        mode = "tabs",
+        mode = "buffers",
         offsets = {
           {
             filetype = "neo-tree",

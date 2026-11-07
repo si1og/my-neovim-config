@@ -14,7 +14,7 @@ vim.opt.langmap = table.concat({
 local function quit_neovim(save_session)
   local persistence = require("persistence")
   if save_session then
-    persistence.save()
+    require("config.session_persistence").save()
   else
     persistence.stop()
   end
@@ -87,6 +87,25 @@ end, { desc = "Close current buffer" })
 -- Tabs
 vim.keymap.set({"v", "n"}, "<Tab>", ">gv", { silent = true })
 vim.keymap.set({"v", "n"}, "<S-Tab>", "<gv", { silent = true })
+
+-- Open buffers
+local buffer_nav = "<Plug>(buffer-nav)"
+vim.keymap.set("n", buffer_nav .. "[", "<cmd>bprevious<CR>" .. buffer_nav, { remap = true, silent = true })
+vim.keymap.set("n", buffer_nav .. "]", "<cmd>bnext<CR>" .. buffer_nav, { remap = true, silent = true })
+vim.keymap.set("n", buffer_nav .. "х", "<cmd>bprevious<CR>" .. buffer_nav, { remap = true, silent = true })
+vim.keymap.set("n", buffer_nav .. "ъ", "<cmd>bnext<CR>" .. buffer_nav, { remap = true, silent = true })
+vim.keymap.set("n", "<leader>[", "<cmd>bprevious<CR>" .. buffer_nav, {
+  desc = "Previous buffer",
+  remap = true,
+})
+vim.keymap.set("n", "<leader>]", "<cmd>bnext<CR>" .. buffer_nav, {
+  desc = "Next buffer",
+  remap = true,
+})
+
+-- Folds
+vim.keymap.set("n", "<S-Space>[", "zc", { desc = "Close fold" })
+vim.keymap.set("n", "<S-Space>]", "zo", { desc = "Open fold" })
 
 -- Splits navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h")
