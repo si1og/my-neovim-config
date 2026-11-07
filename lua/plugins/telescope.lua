@@ -8,6 +8,23 @@ return {
     config = function()
       local telescope = require("telescope")
       local builtin = require("telescope.builtin")
+      local themes = require("telescope.themes")
+
+      local function project_search_opts(opts)
+        return themes.get_dropdown(vim.tbl_deep_extend("force", {
+          initial_mode = "insert",
+          previewer = true,
+          layout_strategy = "vertical",
+          layout_config = {
+            width = 0.55,
+            height = 0.45,
+            prompt_position = "top",
+            mirror = true,
+            preview_height = 0.5,
+          },
+        }, opts or {}))
+      end
+
       telescope.setup({
         defaults = {
           layout_config = {
@@ -40,18 +57,16 @@ return {
           return
         end
 
-        builtin.find_files(require("telescope.themes").get_dropdown({
-          initial_mode = "insert",
+        builtin.find_files(project_search_opts({
           file_ignore_patterns = vim.fn.NvimConfigBinaryFilePatterns(),
-          previewer = false,
-          layout_config = {
-            width = 0.55,
-            height = 0.45,
-          },
         }))
       end, { desc = "Telescope find files" })
-      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
-      vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Search project" })
+      vim.keymap.set("n", "<leader>fg", function()
+        builtin.live_grep(project_search_opts())
+      end, { desc = "Telescope live grep" })
+      vim.keymap.set("n", "<leader>/", function()
+        builtin.live_grep(project_search_opts())
+      end, { desc = "Search project" })
       vim.keymap.set("n", "<leader>fb", function()
         builtin.buffers(require("telescope.themes").get_dropdown({
           initial_mode = "normal",
