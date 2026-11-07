@@ -28,6 +28,8 @@ layout :: [(Char, Char)]
 layout =
   zip "qwertyuiopasdfghjklzxcvbnm" "йцукенгшщзфывапролдячсмить"
     ++ zip "QWERTYUIOPASDFGHJKLZXCVBNM" "ЙЦУКЕНГШЩЗФЫВАПРОЛДЯЧСМИТЬ"
+    ++ zip "`[];',./" "ёхъжэбю."
+    ++ zip "~{}:\"<>?" "ЁХЪЖЭБЮ,"
 
 orElse :: Maybe a -> Maybe a -> Maybe a
 orElse first second = case first of

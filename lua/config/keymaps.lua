@@ -17,6 +17,7 @@ vim.keymap.set("n", "<leader>qQ", "<cmd>qall!<CR>", { desc = "Force quit Neovim"
 vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle<CR>", { desc = "Explorer" })
 vim.keymap.set("n", "<leader>er", "<cmd>Neotree reveal<CR>", { desc = "Explorer: reveal current file" })
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Explorer" })
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
@@ -24,6 +25,12 @@ vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
 
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+vim.keymap.set("n", "<leader>j", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Next diagnostic" })
+vim.keymap.set("n", "<leader>'", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Previous diagnostic" })
 
 -- Move selected line / block of text in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move Lines Down" })
@@ -51,6 +58,7 @@ vim.keymap.set("n", "-", "<C-x>")
 vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
 
 -- Close current buffer
+vim.keymap.set("n", "<leader>c", "<cmd>confirm bdelete<CR>", { desc = "Close current buffer" })
 vim.keymap.set("n", "<leader>cb", function()
   vim.cmd("bdelete! ")
 end, { desc = "Close current buffer" })
@@ -67,3 +75,6 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- Add empty lines
 vim.keymap.set("n", "<leader>o", "o<Esc>")
+
+-- Zed-compatible terminal
+vim.keymap.set("n", "<leader>t", "<cmd>botright 15split | terminal<CR>", { desc = "Open terminal" })

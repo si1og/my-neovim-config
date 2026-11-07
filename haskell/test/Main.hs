@@ -13,6 +13,7 @@ main = do
         [ (translateLeader "<Space>ee" == Just " уу", "lowercase leader translation"),
           (translateLeader " qQ" == Just " йЙ", "uppercase leader translation"),
           (translateKeys "rjk" == "кол", "Telescope key translation"),
+          (translateKeys "/';" == ".эж", "Russian punctuation translation"),
           ("%.[pP][nN][gG]$" `elem` binaryFilePatterns, "PNG search exclusion"),
           ("%.[pP][dD][fF]$" `elem` binaryFilePatterns, "PDF search exclusion"),
           (translateLeader "<Space>e<CR>" == Just " у<CR>", "special key is preserved"),
