@@ -11,17 +11,12 @@ vim.opt.langmap = table.concat({
   "ЯЧСМИТЬ;ZXCVBNM",
 }, ",")
 
-local function quit_neovim(save_session, force)
+local function quit_neovim(save_session)
   local persistence = require("persistence")
   if save_session then
     persistence.save()
   else
     persistence.stop()
-  end
-
-  if force then
-    vim.cmd("qall!")
-    return
   end
 
   local exited = pcall(vim.cmd, "confirm qall")
@@ -34,17 +29,11 @@ local function quit_neovim(save_session, force)
 end
 
 vim.keymap.set("n", "<leader>q", function()
-  quit_neovim(true, false)
-end, { desc = "Quit and save session" })
+  quit_neovim(true)
+end, { desc = "Quit and save session", nowait = true })
 vim.keymap.set("n", "<leader>Q", function()
-  quit_neovim(false, false)
-end, { desc = "Quit without saving session" })
-vim.keymap.set("n", "<leader>qq", function()
-  quit_neovim(true, true)
-end, { desc = "Force quit and save session" })
-vim.keymap.set("n", "<leader>QQ", function()
-  quit_neovim(false, true)
-end, { desc = "Force quit without saving session" })
+  quit_neovim(false)
+end, { desc = "Quit without saving session", nowait = true })
 
 vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle<CR>", { desc = "Explorer" })
