@@ -1,4 +1,19 @@
 vim.g.mapleader = " "
+
+-- Use Normal-mode commands and mappings without switching from Russian layout.
+-- Insert mode is unaffected, so Russian text input continues to work normally.
+vim.opt.langmap = table.concat({
+  "йцукенгшщз;qwertyuiop",
+  "фывапролд;asdfghjkl",
+  "ячсмить;zxcvbnm",
+  "ЙЦУКЕНГШЩЗ;QWERTYUIOP",
+  "ФЫВАПРОЛД;ASDFGHJKL",
+  "ЯЧСМИТЬ;ZXCVBNM",
+}, ",")
+
+vim.keymap.set("n", "<leader>qq", "<cmd>confirm qall<CR>", { desc = "Quit Neovim" })
+vim.keymap.set("n", "<leader>qQ", "<cmd>qall!<CR>", { desc = "Force quit Neovim" })
+
 vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle<CR>", { desc = "Explorer" })
 vim.keymap.set("n", "<leader>rr", "<cmd>Neotree reveal<CR>")
