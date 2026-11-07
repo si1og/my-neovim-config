@@ -40,10 +40,15 @@ return {
           return
         end
 
-        builtin.find_files({
+        builtin.find_files(require("telescope.themes").get_dropdown({
+          initial_mode = "insert",
           file_ignore_patterns = vim.fn.NvimConfigBinaryFilePatterns(),
           previewer = false,
-        })
+          layout_config = {
+            width = 0.55,
+            height = 0.45,
+          },
+        }))
       end, { desc = "Telescope find files" })
       vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
       vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Search project" })
