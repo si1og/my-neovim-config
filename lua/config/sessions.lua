@@ -137,6 +137,7 @@ function M.open()
 
   picker = pickers.new({}, {
     prompt_title = "Sessions  <Tab>/<CR> open  •  <C-r>/r/к rename",
+    initial_mode = "normal",
     finder = finder(),
     sorter = conf.generic_sorter({}),
     attach_mappings = function(prompt_bufnr, map)
