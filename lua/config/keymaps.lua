@@ -71,8 +71,10 @@ vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { desc = "Clear Highlight", sile
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "LSP: format buffer" })
 
 -- Increment/decrement
-vim.keymap.set("n", "+", "<C-a>")
 vim.keymap.set("n", "-", "<C-x>")
+
+-- Save without reaching for Enter or Command-S.
+vim.keymap.set("n", "++", "<cmd>write<CR>", { desc = "Save file", silent = true })
 
 -- Delete without overwriting the current register
 vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
