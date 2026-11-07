@@ -18,9 +18,16 @@ local function write_names(names)
 end
 
 local function decode_session(path)
+  if vim.fn.exists("*NvimConfigDecodeSession") ~= 1 then
+    return nil
+  end
+
   local file = vim.fn.fnamemodify(path, ":t:r")
-  local parts = vim.split(file, "%%", { plain = true })
-  local dir = parts[1]:gsub("%%", "/")
+  local ok, decoded = pcall(vim.fn.NvimConfigDecodeSession, path)
+  if not ok then
+    return nil
+  end
+  local dir = decoded[1]
 
   if jit.os:find("Windows") then
     dir = dir:gsub("^(%w)/", "%1:/")
@@ -30,7 +37,7 @@ local function decode_session(path)
     key = file,
     path = path,
     dir = dir,
-    branch = parts[2],
+    branch = decoded[2] ~= "" and decoded[2] or nil,
   }
 end
 
@@ -41,9 +48,11 @@ local function session_items()
 
   for _, path in ipairs(persistence.list()) do
     local item = decode_session(path)
-    item.name = names[item.key]
-    item.relative_dir = vim.fn.fnamemodify(item.dir, ":~")
-    items[#items + 1] = item
+    if item then
+      item.name = names[item.key]
+      item.relative_dir = vim.fn.fnamemodify(item.dir, ":~")
+      items[#items + 1] = item
+    end
   end
 
   return items, names

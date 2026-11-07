@@ -6,16 +6,12 @@ local M = {
 local watcher = vim.fn.expand("~/.local/bin/nvim-input-source-watch")
 
 local function label_for(source)
-  local id = source:lower()
-  if id:find("russian", 1, true) or id:find("cyrillic", 1, true) then
-    return "RU"
-  end
-  if id:find("abc", 1, true) or id:find("us", 1, true) or id:find("british", 1, true) then
-    return "EN"
+  if vim.fn.exists("*NvimConfigInputSourceLabel") ~= 1 then
+    return nil
   end
 
-  local name = source:match("([^.]+)$") or source
-  return name:sub(1, 3):upper()
+  local ok, label = pcall(vim.fn.NvimConfigInputSourceLabel, source)
+  return ok and label or nil
 end
 
 local function refresh_statusline()
@@ -38,8 +34,11 @@ function M.setup()
       for _, source in ipairs(data or {}) do
         source = vim.trim(source)
         if source ~= "" then
-          M.label = label_for(source)
-          refresh_statusline()
+          local label = label_for(source)
+          if label then
+            M.label = label
+            refresh_statusline()
+          end
         end
       end
     end,
