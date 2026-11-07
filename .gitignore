@@ -8,3 +8,4 @@ lazy-lock.json
 .env*
 conf-from-git-repo/
 session.vim
+haskell/.stack-work/
