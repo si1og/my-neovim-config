@@ -3,6 +3,7 @@
 module PluginRegistry (pluginRegistry) where
 
 import Data.Maybe (fromMaybe)
+import FileSearch (binaryFilePatterns)
 import InputSource (inputSourceLabel)
 import KeyboardLayout (translateKeys, translateLeader)
 import Neovim
@@ -22,6 +23,9 @@ decodeSessionRpc path =
 inputSourceLabelRpc :: String -> Neovim () String
 inputSourceLabelRpc = pure . inputSourceLabel
 
+binaryFilePatternsRpc :: Neovim () [String]
+binaryFilePatternsRpc = pure binaryFilePatterns
+
 $(pure [])
 
 configHelpers :: Neovim () NeovimPlugin
@@ -33,7 +37,8 @@ configHelpers =
           [ $(function "NvimConfigTranslateLeader" 'translateLeaderRpc) Sync,
             $(function "NvimConfigTranslateKeys" 'translateKeysRpc) Sync,
             $(function "NvimConfigDecodeSession" 'decodeSessionRpc) Sync,
-            $(function "NvimConfigInputSourceLabel" 'inputSourceLabelRpc) Sync
+            $(function "NvimConfigInputSourceLabel" 'inputSourceLabelRpc) Sync,
+            $(function "NvimConfigBinaryFilePatterns" 'binaryFilePatternsRpc) Sync
           ]
       }
 

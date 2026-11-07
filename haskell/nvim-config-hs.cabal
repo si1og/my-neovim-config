@@ -5,6 +5,7 @@ build-type: Simple
 
 library
   exposed-modules:
+    FileSearch
     InputSource
     KeyboardLayout
     Session

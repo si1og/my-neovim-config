@@ -1,6 +1,7 @@
 module Main (main) where
 
 import Control.Monad (unless)
+import FileSearch (binaryFilePatterns)
 import InputSource (inputSourceLabel)
 import KeyboardLayout (translateKeys, translateLeader)
 import Session (SessionRef (..), decodeSession)
@@ -12,6 +13,8 @@ main = do
         [ (translateLeader "<Space>ee" == Just " уу", "lowercase leader translation"),
           (translateLeader " qQ" == Just " йЙ", "uppercase leader translation"),
           (translateKeys "rjk" == "кол", "Telescope key translation"),
+          ("%.[pP][nN][gG]$" `elem` binaryFilePatterns, "PNG search exclusion"),
+          ("%.[pP][dD][fF]$" `elem` binaryFilePatterns, "PDF search exclusion"),
           (translateLeader "<Space>e<CR>" == Just " у<CR>", "special key is preserved"),
           (translateLeader "gd" == Nothing, "non-leader mapping is ignored"),
           (decodeSession "%Users%ilyasemenov%project.vim" == SessionRef "/Users/ilyasemenov/project" Nothing, "session directory"),
