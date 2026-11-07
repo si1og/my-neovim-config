@@ -1,11 +1,11 @@
 module Main (main) where
 
 import Neovim (NeovimConfig (..), defaultConfig, neovim)
-import qualified NvimConfig.Plugin as Plugin
+import PluginRegistry (pluginRegistry)
 
 main :: IO ()
 main =
   neovim
     defaultConfig
-      { plugins = plugins defaultConfig ++ [Plugin.plugin]
+      { plugins = plugins defaultConfig ++ pluginRegistry
       }

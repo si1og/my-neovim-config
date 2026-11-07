@@ -1,10 +1,12 @@
 {-# LANGUAGE TemplateHaskell #-}
 
-module NvimConfig.Plugin (plugin) where
+module PluginRegistry (pluginRegistry) where
 
 import Data.Maybe (fromMaybe)
+import InputSource (inputSourceLabel)
+import KeyboardLayout (translateLeader)
 import Neovim
-import NvimConfig.Pure
+import Session (SessionRef (..), decodeSession)
 
 translateLeaderRpc :: String -> Neovim () String
 translateLeaderRpc = pure . fromMaybe "" . translateLeader
@@ -19,8 +21,8 @@ inputSourceLabelRpc = pure . inputSourceLabel
 
 $(pure [])
 
-plugin :: Neovim () NeovimPlugin
-plugin =
+configHelpers :: Neovim () NeovimPlugin
+configHelpers =
   wrapPlugin
     Plugin
       { environment = (),
@@ -30,3 +32,6 @@ plugin =
             $(function "NvimConfigInputSourceLabel" 'inputSourceLabelRpc) Sync
           ]
       }
+
+pluginRegistry :: [Neovim () NeovimPlugin]
+pluginRegistry = [configHelpers]

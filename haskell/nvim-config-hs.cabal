@@ -4,7 +4,10 @@ version: 0.1.0.0
 build-type: Simple
 
 library
-  exposed-modules: NvimConfig.Pure
+  exposed-modules:
+    InputSource
+    KeyboardLayout
+    Session
   hs-source-dirs: src
   build-depends:
     base >=4.18 && <5,
@@ -15,7 +18,7 @@ library
 executable nvim-config-hs
   main-is: Main.hs
   hs-source-dirs: app
-  other-modules: NvimConfig.Plugin
+  other-modules: PluginRegistry
   build-depends:
     base >=4.18 && <5,
     nvim-config-hs,

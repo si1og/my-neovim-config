@@ -1,7 +1,9 @@
 module Main (main) where
 
 import Control.Monad (unless)
-import NvimConfig.Pure
+import InputSource (inputSourceLabel)
+import KeyboardLayout (translateLeader)
+import Session (SessionRef (..), decodeSession)
 import System.Exit (exitFailure)
 
 main :: IO ()
