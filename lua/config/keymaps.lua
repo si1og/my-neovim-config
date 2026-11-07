@@ -16,7 +16,7 @@ vim.keymap.set("n", "<leader>qQ", "<cmd>qall!<CR>", { desc = "Force quit Neovim"
 
 vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle<CR>", { desc = "Explorer" })
-vim.keymap.set("n", "<leader>rr", "<cmd>Neotree reveal<CR>")
+vim.keymap.set("n", "<leader>er", "<cmd>Neotree reveal<CR>", { desc = "Explorer: reveal current file" })
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})

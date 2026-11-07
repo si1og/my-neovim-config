@@ -3,8 +3,8 @@ return {
     "folke/persistence.nvim",
     event = "BufReadPre",
     opts = {
-      need = 1,
-      branch = true,
+      need = 0,
+      branch = false,
     },
     init = function()
       vim.opt.sessionoptions = {
@@ -17,6 +17,13 @@ return {
       }
     end,
     keys = {
+      {
+        "<leader>r",
+        function()
+          require("config.sessions").open()
+        end,
+        desc = "Open project sessions",
+      },
       {
         "<leader>qs",
         function()
