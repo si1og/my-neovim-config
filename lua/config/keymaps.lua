@@ -11,8 +11,40 @@ vim.opt.langmap = table.concat({
   "ЯЧСМИТЬ;ZXCVBNM",
 }, ",")
 
-vim.keymap.set("n", "<leader>qq", "<cmd>confirm qall<CR>", { desc = "Quit Neovim" })
-vim.keymap.set("n", "<leader>qQ", "<cmd>qall!<CR>", { desc = "Force quit Neovim" })
+local function quit_neovim(save_session, force)
+  local persistence = require("persistence")
+  if save_session then
+    persistence.save()
+  else
+    persistence.stop()
+  end
+
+  if force then
+    vim.cmd("qall!")
+    return
+  end
+
+  local exited = pcall(vim.cmd, "confirm qall")
+  if not save_session and not persistence.active() then
+    persistence.start()
+  end
+  if not exited then
+    vim.notify("Neovim exit was cancelled", vim.log.levels.INFO)
+  end
+end
+
+vim.keymap.set("n", "<leader>q", function()
+  quit_neovim(true, false)
+end, { desc = "Quit and save session" })
+vim.keymap.set("n", "<leader>Q", function()
+  quit_neovim(false, false)
+end, { desc = "Quit without saving session" })
+vim.keymap.set("n", "<leader>qq", function()
+  quit_neovim(true, true)
+end, { desc = "Force quit and save session" })
+vim.keymap.set("n", "<leader>QQ", function()
+  quit_neovim(false, true)
+end, { desc = "Force quit without saving session" })
 
 vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle<CR>", { desc = "Explorer" })
