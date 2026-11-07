@@ -3,7 +3,7 @@ module Main (main) where
 import Control.Monad (unless)
 import FileSearch (binaryFilePatterns)
 import InputSource (inputSourceLabel)
-import KeyboardLayout (translateKeys, translateLeader)
+import KeyboardLayout (translateKeys, translateLeader, translateLeaders)
 import Session (SessionRef (..), decodeSession)
 import System.Exit (exitFailure)
 
@@ -12,6 +12,7 @@ main = do
   let checks =
         [ (translateLeader "<Space>ee" == Just " уу", "lowercase leader translation"),
           (translateLeader " qQ" == Just " йЙ", "uppercase leader translation"),
+          (translateLeaders ["<Space>ee", "gd", " qQ"] == [" уу", "", " йЙ"], "batched leader translation"),
           (translateKeys "rjk" == "кол", "Telescope key translation"),
           (translateKeys "/';" == ".эж", "Russian punctuation translation"),
           ("%.[pP][nN][gG]$" `elem` binaryFilePatterns, "PNG search exclusion"),

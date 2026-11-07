@@ -1,16 +1,21 @@
 module KeyboardLayout
   ( translateKeys,
     translateLeader,
+    translateLeaders,
   )
 where
 
 import Data.List (stripPrefix)
+import Data.Maybe (fromMaybe)
 
 translateLeader :: String -> Maybe String
 translateLeader lhs = do
   suffix <- stripPrefix "<Space>" lhs `orElse` stripPrefix " " lhs
   let translated = translateKeys suffix
   if translated == suffix then Nothing else Just (' ' : translated)
+
+translateLeaders :: [String] -> [String]
+translateLeaders = fmap (fromMaybe "" . translateLeader)
 
 translateKeys :: String -> String
 translateKeys [] = []
