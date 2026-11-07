@@ -62,7 +62,7 @@ function M.setup()
 end
 
 function M.status()
-  return "KB " .. M.label
+  return M.label
 end
 
 return M
